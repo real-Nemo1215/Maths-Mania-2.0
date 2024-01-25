@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body style = "background-color: #DCF2F1;color:#0F1035;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+    <h1 id = "megatitle">- Math Luck -</h1>
+    <div class="flex place-content-center">
+        <h2 class = "mt-5 text-9xl" id = "var1">003</h2>
+    </div>
+    <div class="flex place-content-center">
+        <div class="mt-20 text-6xl">
+            <style>
+                #megatitle{
+                    text-align: center;
+                    font-size: 85px;
+                    color: #0F1035;
+                    font-weight: bold;
+                }
+                #dice1{
+                    background-color: #7FC7D9;
+                }
+                #dice1:hover{
+                    background-color: #0F1035;
+                    color:#DCF2F1;
+                }
+                #dice1:active{
+                    background-color: #7FC7D9;
+
+                }
+            </style>
+        <button style = "height:120px;width:200px;border-color:#0F1035;"class = "mr-20 border-4 hover:bg-black pt-7 pb-7 pr-7 pl-7 rounded-xl text-5xl"id = "dice1"onclick="dice()" type="button"></button>
+    </div>
+    <div class="text-6xl ml-18">
+        <h2 style = "background-color:#7FC7D9;margin-top:80px;border-color:#0F1035;"class = "pr-5 pl-5 pt-6 pb-6 border-4 border-black" id = "oper1"><--- Start by pressing this button</h2>
+        <h3 style = "margin-right:40px;"id = "counter" class = "mt-5 text-7xl">Turn: </h3>
+        <br>
+        <br><a href="mathsmania2.html" target="_blank"><h1 style = "margin-left:250px;font-size: 25px;font-weight:bold;color:#0F1035">Home</h1></a><br>
+        </div><div>
+            
+        </div>
+</body>
+<script>
+    var count = 0;
+    function dice() {
+        count = count + 1;
+        // Get the current value of the dice
+        var currentDiceValue = parseInt(document.getElementById('dice1').innerText);
+
+        // Generate a random value (1 or 2) to simulate dice rolling
+        var randomValue = Math.floor(Math.random() * 2) + 1;
+
+        // Switch between values 1 and 2
+        var newDiceValue = Math.floor(Math.random()*(3-1))+1;
+        console.log(newDiceValue);
+        if (newDiceValue == 1){
+            let now1 = parseFloat(document.getElementById('var1').innerText);
+            document.getElementById('dice1').innerText = "Head";
+            let calc1 = now1 + ((45/100)*now1);
+            document.getElementById('oper1').innerText = now1.toFixed(2) + (" + (45% of ") + now1.toFixed(2) + (") = ") + calc1.toFixed(2);
+            now1 = calc1.toFixed(2);
+            document.getElementById('var1').innerText = now1;
+        }
+        if (newDiceValue == 2){
+            let now1 = parseFloat(document.getElementById('var1').innerText);
+            document.getElementById('dice1').innerText = "Tails";
+            let calc2 = now1 - ((20/100)*now1);
+            document.getElementById('oper1').innerText = now1.toFixed(2) + (" - (20% of ") + now1.toFixed(2) + (") = ") + calc2.toFixed(2);
+            now1 = calc2.toFixed(2);
+            document.getElementById('var1').innerText = now1;
+        }
+        document.getElementById("counter").innerHTML = "Turn: " + count;
+        const button = document.getElementById('dice1');
+        if (count == 10){
+            button.disabled = true;
+            document.getElementById("counter").innerHTML = "Turn: " + count + "--  YOUR TURNS ARE UP!";
+        }
+    }
+</script>
+</html>
+
+

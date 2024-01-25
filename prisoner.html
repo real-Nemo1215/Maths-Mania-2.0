@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <TITLE>PRISONERSDILEMMAPLUS</TITLE>
+</head>
+
+<body class = "container"style = "text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+    <H1 style="margin-left:36px;margin-right:-10px;font-size:86px;color:#22092c;font-weight:bolder;margin-bottom:20px;">- PRISONERS DILEMMA PLUS -</H1>
+    <h2 id = "roundcount"style = "font-size:90px;color:#872341;;font-weight:bold;margin-bottom:-30px;">Turn: </h2>
+    <div style = "text-align: center;margin-right: 80px;margin-left: -50px;" class = "flex">
+        <div class = "todo-list1">
+            <h2>PLAYER 1</h2>
+            <div class="row">
+                <button id = "submit1def" class = "bon" onclick="defone()">Defect</button>
+                <button id = "submit1cop"class = "bon" onclick="copone()">Cooperate</button>
+                <button id = "submit1risk" class = "bon"onclick="riskone()">Risk</button>
+            </div>
+            <ul id = "list1-container">
+            </ul>
+        </div>
+        <div class = "todo-list2">
+            <h2>PLAYER 2</h2>
+            <div class="row">
+                <button id = "submit2def"class = "bon" onclick="deftwo()">Defect</button>
+                <button id = "submit2cop"class = "bon" onclick="coptwo()">Cooperate</button>
+                <button id = "submit2risk"class = "bon" onclick="risktwo()">Risk</button>
+            </div>
+            <ul id = "list2-container">
+
+            </ul>
+            
+    </div></div>
+<a href="mathsmania2.html" target="_blank"><h1 style = "font-size: 25px;font-weight:bold;color:#26001B;">Home</h1></a><br>
+
+</body>
+<script>
+    let round = 0;
+    let round2 = 0;
+    const List1container = document.getElementById('list1-container');
+    const List2container = document.getElementById('list2-container');
+    function defone(){
+        round += 1;
+        let li = document.createElement('li');
+        li.innerHTML = round + ". Defect";
+        List1container.appendChild(li);
+        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
+    }
+    function copone(){
+        round += 1;
+        let li = document.createElement('li');
+        li.innerHTML = round + ". Cooperate";
+        List1container.appendChild(li);
+        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
+    }
+    function riskone(){
+        round += 1;
+        let li = document.createElement('li');
+        li.innerHTML = round + ". Risk";
+        List1container.appendChild(li);
+        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
+    }
+    function deftwo(){
+        round2 += 1;
+        let li2 = document.createElement('li');
+        li2.innerHTML = round2 + ". Defect";
+        List2container.appendChild(li2);
+        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
+    }
+    function coptwo(){
+        round2 += 1;
+        let li2 = document.createElement('li');
+        li2.innerHTML = round2 + ". Cooperate";
+        List2container.appendChild(li2);
+        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
+    }
+    function risktwo(){
+        round2 += 1;
+        let li2 = document.createElement('li');
+        li2.innerHTML = round2 + ". Risk";
+        List2container.appendChild(li2);
+        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
+    }
+
+    </script>
+<style>
+    .bon:hover{
+        background-color: #be3144;
+
+    }
+    ul li{
+        list-style: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: #FFF600;
+        padding: 12px 8px 12px 50px;
+    }
+    ul li::before{
+        content: '';
+        position: absolute;
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        top: 12px;
+        position: relative;
+    }
+    #submit1cop, #submit1def, #submit1risk, #submit2cop, #submit2def, #submit2risk{
+        border: none;
+        outline: none;
+        padding: 16px 50px;
+        background-color: #FFF600;
+        color: #26001B;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 40px;
+        font-weight: bold;
+
+    }
+    .row{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f05941;
+        border-radius: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 25px;
+    }
+    .todo-list1{
+        width: 100%;
+        max-width: 540px;
+        background: #f05941;
+        margin: 100px ;
+        padding: 40px 30px 70px;
+        border-radius: 10px;
+        border: solid;
+        border-width: 7px;
+        border-color: #872341;
+        color:#be3144;
+    }
+    .todo-list2{
+        width: 100%;
+        max-width: 540px;
+        background: #f05941;
+        margin: 100px;
+        padding: 40px 30px 70px;
+        border-radius: 10px;
+        border: solid;
+        border-width: 7px;
+        border-color: #872341;
+    }
+    .todo-list2 h2{
+        color: black;
+        margin-bottom: 20px;
+        font-size: 200%;
+        font-weight: bolder;
+        color:#FFF600;
+    }
+    .todo-list1 h2{
+        color: black;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 200%;
+        font-weight: bolder;
+        color:#FFF600;
+    }
+    .container{
+        width: 100%;
+        min-height: 100vh;
+        background: #f3b6ad;    
+    }
+</style>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    body{
+        background-color: #DAFFFB;
+        color:#020e20;
+        font-family: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif";
+    }
+    .columns{
+        text-align: center;
+        margin-top: 50px;
+    }
+    .col1{
+        font-size: 35px;
+        font-weight: bold;
+        color:#020e20;
+    }
+    .title {
+        background: #A6F6FF;
+        border: solid;
+        border-color: #6499E9;
+        font-size: 37px;
+        margin-bottom: 10px;
+        font-weight: bolder;
+    
+        
+    }
+</style>
+
+<body class = "place-content-center">
+    <div>
+        <h1 style = "color:red" id = "final"></h1>
+    </div>
+    <div>
+        <style>
+            h1{
+                font-size: 80px;
+                font-weight: bolder;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            #dice1{
+                background-color: #9EDDFF;
+                font-weight: bolder;
+                border-color:#6499E9;
+            }
+            #dice1:hover{
+                background:url(dice12.gif);
+                background-position: center;
+                background-size: cover;
+                font-weight: bolder;
+            }
+        </style>
+        <h1>- Flip Game -</h1>
+    </div>
+    <div style = "text-align: center;">
+        <button style = "font-size:68px;height:160px;width:160px;"class = "border-4 hover:bg-yellow-400 active:bg-black border-black bg-white pt-7 pb-7 pr-7 pl-7 rounded-xl"id = "dice1"onclick="dice()" type="button"></button>
+    </div>
+    <div style = "margin-left:20px; margin-right:20px;"class = "grid grid-cols-3 gap-3 ">
+        <div class = "columns">
+            <h1 class = "title">Probablities</h1>
+            <h2 id = "pointper"class = "col1">99% For Points</h2>
+            <h2 id = "zeroper" class = "col1">1% For Zero</h2>
+        </div>
+        <div class = "columns">
+            <h2 class = "title">Total</h2>
+            <h2 style = "font-size:80px;" id = "totalcount" class = "col1">0</h2>
+            <style>
+            </style>
+        </div>
+        <div class = "columns">
+            <h2 class = "title">Turns left</h2>
+            <h2 id = "turncount" style = "font-size:80px;"class = "col1">15</h2>
+            <style>
+                h2{
+                    text-align: center;
+                }
+            </style>
+        </div>
+    </div>
+    <br>
+        <br><a href="mathsmania2.html" target="_blank"><h1 style = "font-size: 25px;font-weight:bold;color:#020e20">Home</h1></a>
+</body>
+<script>
+    function dice() {
+        count = count + 1;
+        // Get the current value of the dice
+        var currentDiceValue = parseInt(document.getElementById('dice1').innerText);
+
+        // Generate a random value (1 or 2) to simulate dice rolling
+        var randomValue = Math.floor(Math.random() * 2) + 1;
+
+        // Switch between values 1 and 2
+        var newDiceValue = Math.floor(Math.random()*(3-1))+1;
+        console.log(newDiceValue);
+        if (newDiceValue == 1){
+            let now1 = parseFloat(document.getElementById('var1').innerText);
+            document.getElementById('dice1').innerText = "Head";
+            let calc1 = now1 + ((45/100)*now1);
+            document.getElementById('oper1').innerText = now1.toFixed(2) + (" + (45% of ") + now1.toFixed(2) + (") = ") + calc1.toFixed(2);
+            now1 = calc1.toFixed(2);
+            document.getElementById('var1').innerText = now1;
+        }
+        if (newDiceValue == 2){
+            let now1 = parseFloat(document.getElementById('var1').innerText);
+            document.getElementById('dice1').innerText = "Tails";
+            let calc2 = now1 - ((20/100)*now1);
+            document.getElementById('oper1').innerText = now1.toFixed(2) + (" - (20% of ") + now1.toFixed(2) + (") = ") + calc2.toFixed(2);
+            now1 = calc2.toFixed(2);
+            document.getElementById('var1').innerText = now1;
+        }
+        document.getElementById("counter").innerHTML = "Turn: " + count;
+        if (count == 10){
+            document.getElementById("counter").innerHTML = "Turn: " + count + "--  YOUR TURNS ARE UP!";
+        }
+    }
+    const maximumPointsGiven = 6;
+    const mininumPointsGiven = 1;
+    const flipPercentageChange = 5;
+    const goalPoints = 30;
+    let flipPercentageForPoint = 99;
+    let flipPercentageForZero = 1;
+    let turnsLeft = 15;
+    let pointTotal = 0;
+    let pointsFlipped = 0;
+
+    const flipOdds = percentage => Math.random() * 100 < percentage;
+    const pointsToGive = () => Math.floor(Math.random() * (maximumPointsGiven - mininumPointsGiven + 1)) + mininumPointsGiven;
+
+function dice() {
+    const isPoint = flipOdds(flipPercentageForPoint);
+    turnsLeft -= 1;
+    document.getElementById("turncount").innerHTML = turnsLeft;
+
+
+    if (flipPercentageForPoint - flipPercentageChange < 0) {
+        flipPercentageForPoint = 0;
+        document.getElementById("pointper").innerHTML = flipPercentageForPoint + "% For Points";
+    } else {
+        flipPercentageForPoint -= flipPercentageChange;
+        document.getElementById("pointper").innerHTML = flipPercentageForPoint + "% For Points";
+    }
+
+    if (flipPercentageForZero + flipPercentageChange > 100) {
+        flipPercentageForZero = 100;
+        document.getElementById("zeroper").innerHTML = flipPercentageForZero + "% For Zero";
+    } else {
+        flipPercentageForZero += flipPercentageChange;
+        document.getElementById("zeroper").innerHTML = flipPercentageForZero + "% For Zero";
+    }
+
+    if (isPoint) {
+        pointsFlipped = pointsToGive();
+        pointTotal += pointsFlipped;
+        document.getElementById("dice1").innerHTML = "+"+pointsFlipped;
+        document.getElementById("totalcount").innerHTML = pointTotal;
+        
+        if (pointTotal === goalPoints) {
+            // do win
+        }
+    } else {
+        pointTotal = 0;
+        document.getElementById("dice1").innerHTML = "0";
+        document.getElementById("totalcount").innerHTML = "0";
+        document.getElementById("final").innerHTML = "YOU'VE LOST!";
+        let zero = document.getElementById('dice1');
+        zero.disabled = true;
+        // do lose
+    }
+}
+</script>
+</html>
+
+

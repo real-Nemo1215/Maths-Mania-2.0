@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <TITLE>NIMGAME</TITLE>
+</head>
+
+<body>
+    <style>
+        body{
+            background-color: #F9EFDB;
+            color: #2a4f50;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .btnnow{
+            background-color: #ebd9b4;
+            border-color: #9dbc98;
+        }
+        .btnnow:hover{
+            background-color: #9dbc98;
+        }
+        .btnnow:active{
+            background-color: #638889;
+            color:#F9EFDB;
+            border-color: #638889;
+        }
+        #start12{
+            background-color: #ebd9b4;
+            border-color: #9dbc98;
+        }
+        #start12:hover{
+            background-color: #9dbc98;
+        }
+        #start12:active{
+            background-color: #638889;
+            color:#F9EFDB;
+            border-color: #638889;
+        }
+        #final1{
+            color:rgb(160, 14, 14);
+        }
+    </style>
+    <h1 style = "font-size: 100px;font-weight: bolder;text-align: center;color:black;">- NIM GAME PLUS -</h1>
+    <div class="flex place-content-center">
+        <div style = "font-weight: bolder;"class="mt-20 text-8xl">
+            <h1>ITEM COUNT: </h1>
+        </div>
+        <div style = "font-weight: bolder;" class="mt-20 text-8xl ml-20">
+            <h2 style = "color:black"id = "var1">0</h2>
+        </div>
+        </div>
+        <div class = "ml-10 flex place-content-center">
+            <div><button id = "opone" class = "btnnow mr-20 mt-20 border-4 pt-5 pb-5 pr-7 pl-7 rounded-xl text-5xl"onclick="sub1()" type="button">1</button></div>
+            <div> <button id = "optwo" class = "btnnow ml-20 mt-20 border-4  pt-5 pb-5 pr-7 pl-7 rounded-xl text-5xl"onclick="sub2()" type="button">2</button></div>
+        </div>
+        <div>
+            <center><h1 id = "final1"class = "font-bold text-8xl mt-8"></h1></center>
+            <br><center><button style = "font-weight: bolder;"id = "start12" onclick="start()" class = "text-4xl border-4 border-black rounded-xl pr-10 pl-10 p-4">Start</button>
+            <br>
+        <br><a href="mathsmania2.html" target="_blank"><h1 style = "font-size: 25px;font-weight:bold;color:#092627">Home</h1></a><br></center>
+        </div>
+</body>
+<script>
+    let oponetext;
+    let optwotext;
+    let text;
+    let track = 0;
+    let player;
+    function start(){
+        let prom = prompt("Enter Items to start with:");
+        if (prom == null || prom == "") {
+        text = "User cancelled the prompt.";
+        } else {
+            text = parseInt(prom);
+            if (Number.isNaN(text) == true){
+                text = "Invalid"
+            }
+        }
+        document.getElementById("var1").innerHTML = text;
+        var button = document.getElementById("start12");
+        if (button) {
+            button.parentNode.removeChild(button);
+            }
+        }
+        let promone = prompt("Enter Option 1:");
+        if (promone == null || promone == "") {
+        oponetext = "User cancelled the prompt.";
+        } else {
+            oponetext = parseInt(promone);
+            if (Number.isNaN(oponetext) == true){
+                oponetext = "Invalid"
+            }
+        }
+        document.getElementById("opone").innerHTML = oponetext;
+        let promtwo = prompt("Enter Option 2:");
+        if (promtwo == null || promtwo == "") {
+        optwotext = "User cancelled the prompt.";
+        } else {
+            optwotext = parseInt(promtwo);
+            if (Number.isNaN(optwotext) == true){
+                optwotext = "Invalid"
+            }
+        }
+        document.getElementById("optwo").innerHTML = optwotext;
+    function sub1(){
+        text -= oponetext;
+        track++;
+        if (track % 2 === 0) {
+            player = 2;
+        }else{
+            player =1;
+        }
+        console.log(track)
+        document.getElementById("var1").innerHTML = text;
+        if (text < oponetext && text < optwotext){
+            if (player == 1) {
+                document.getElementById('final1').innerHTML = "Player 1 Won!";
+                let disone = document.getElementById('opone');
+                disone.disabled = true;
+                let distwo = document.getElementById('optwo');
+                distwo.disabled = true;
+            }else{
+                document.getElementById('final1').innerHTML = "Player 2 Won!"; 
+            }
+        }
+    }
+    function sub2(){
+        text -= optwotext;
+        track++;
+        if (track % 2 === 0) {
+            player = 2;
+        }else{
+            player =1;
+        }
+        console.log(track)
+        document.getElementById("var1").innerHTML = text;
+        if (text < oponetext && text < optwotext){
+            if (player == 1) {
+                document.getElementById('final1').innerHTML = "Player 1 Won!";
+                disone = document.getElementById('opone');
+                disone.disabled = true;
+                let distwo = document.getElementById('optwo');
+                distwo.disabled = true;
+            }else{
+                document.getElementById('final1').innerHTML = "Player 2 Won!";
+            }
+        }
+    }
+</script>
+</html>
+
+
