@@ -112,6 +112,14 @@
         }else{
             player =1;
         }
+        if (text <oponetext){
+            let disone = document.getElementById('opone');
+            disone.disabled = true;
+        }
+        if(text < optwotext){
+            let distwo = document.getElementById('optwo');
+            distwo.disabled = true;
+        }
         console.log(track)
         document.getElementById("var1").innerHTML = text;
         if (text < oponetext && text < optwotext){
@@ -136,12 +144,20 @@
         }
         console.log(track)
         document.getElementById("var1").innerHTML = text;
+        if (text <oponetext){
+            let disone = document.getElementById('opone');
+            disone.disabled = true;
+        }
+        if(text < optwotext){
+            let distwo = document.getElementById('optwo');
+            distwo.disabled = true;
+        }
         if (text < oponetext && text < optwotext){
             if (player == 1) {
                 document.getElementById('final1').innerHTML = "Player 1 Won!";
                 disone = document.getElementById('opone');
                 disone.disabled = true;
-                let distwo = document.getElementById('optwo');
+                distwo = document.getElementById('optwo');
                 distwo.disabled = true;
             }else{
                 document.getElementById('final1').innerHTML = "Player 2 Won!";
