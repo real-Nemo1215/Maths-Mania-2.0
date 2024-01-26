@@ -45,7 +45,7 @@
     <h1 style = "font-size: 100px;font-weight: bolder;text-align: center;color:black;">- NIM GAME PLUS -</h1>
     <div class="flex place-content-center">
         <div style = "font-weight: bolder;"class="mt-20 text-8xl">
-            <h1>ITEM COUNT: </h1>
+            <h1 id = "invalidclaim">ITEM COUNT: </h1>
         </div>
         <div style = "font-weight: bolder;" class="mt-20 text-8xl ml-20">
             <h2 style = "color:black"id = "var1">0</h2>
@@ -70,40 +70,31 @@
     let player;
     function start(){
         let prom = prompt("Enter Items to start with:");
-        if (prom == null || prom == "") {
-        text = "User cancelled the prompt.";
-        } else {
+        if (prom == null || prom == "" || Number.isNaN(prom) == true) {
+            document.getElementById("var1").innerHTML = "Invalid Parameters!";
+        }else {
             text = parseInt(prom);
-            if (Number.isNaN(text) == true){
-                text = "Invalid"
+            document.getElementById("var1").innerHTML = text;
+            let promone = prompt("Enter Option 1:");
+            oponetext = parseInt(promone);
+            if (promone == null || promone == "" || text < oponetext || Number.isNaN(oponetext) == true) {
+                document.getElementById("var1").innerHTML = "Invalid Parameters!";
+            }else{
+                document.getElementById("opone").innerHTML = oponetext;
+                let promtwo = prompt("Enter Option 2:");
+                optwotext = parseInt(promtwo);
+                if (promtwo == null || promtwo == "" || text < optwotext || Number.isNaN(optwotext) == true) {
+                    document.getElementById("var1").innerHTML = "Invalid Parameters!";
+                }else {
+                    document.getElementById("optwo").innerHTML = optwotext;
+                }
             }
-        }
-        document.getElementById("var1").innerHTML = text;
+    }
         var button = document.getElementById("start12");
         if (button) {
             button.parentNode.removeChild(button);
             }
         }
-        let promone = prompt("Enter Option 1:");
-        if (promone == null || promone == "") {
-        oponetext = "User cancelled the prompt.";
-        } else {
-            oponetext = parseInt(promone);
-            if (Number.isNaN(oponetext) == true){
-                oponetext = "Invalid"
-            }
-        }
-        document.getElementById("opone").innerHTML = oponetext;
-        let promtwo = prompt("Enter Option 2:");
-        if (promtwo == null || promtwo == "") {
-        optwotext = "User cancelled the prompt.";
-        } else {
-            optwotext = parseInt(promtwo);
-            if (Number.isNaN(optwotext) == true){
-                optwotext = "Invalid"
-            }
-        }
-        document.getElementById("optwo").innerHTML = optwotext;
     function sub1(){
         text -= oponetext;
         track++;

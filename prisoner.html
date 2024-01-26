@@ -7,88 +7,168 @@
   <TITLE>PRISONERSDILEMMAPLUS</TITLE>
 </head>
 
-<body class = "container"style = "text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-    <H1 style="margin-left:36px;margin-right:-10px;font-size:86px;color:#22092c;font-weight:bolder;margin-bottom:20px;">- PRISONERS DILEMMA PLUS -</H1>
-    <h2 id = "roundcount"style = "font-size:90px;color:#872341;;font-weight:bold;margin-bottom:-30px;">Turn: </h2>
-    <div style = "text-align: center;margin-right: 80px;margin-left: -50px;" class = "flex">
-        <div class = "todo-list1">
+<body class="container">
+    <h1 style="text-align: center; font-size: 86px; color: #22092c; font-weight: bolder; margin-bottom: 90px;">- PRISONERS DILEMMA PLUS -</h1>
+    <h2 id="roundcount" style="text-align: center; font-size: 90px; color: #872341; font-weight: bold; margin-bottom: -30px;">Turn: </h2>
+    <div style="text-align: center; margin-right: 80px; margin-left: -50px;" class="grid grid-cols-2">
+        <div class="todo-list1">
             <h2>PLAYER 1</h2>
             <div class="row">
-                <button id = "submit1def" class = "bon" onclick="defone()">Defect</button>
-                <button id = "submit1cop"class = "bon" onclick="copone()">Cooperate</button>
-                <button id = "submit1risk" class = "bon"onclick="riskone()">Risk</button>
+                <button id="submit1def" class="bon">Defect</button>
+                <button id="submit1cop" class="bon">Cooperate</button>
+                <button id="submit1risk" class="bon">Risk</button>
             </div>
-            <ul id = "list1-container">
-            </ul>
+            <ul id="list1-container"></ul>
+            <h1 id = "final1"class = "finalresult">00</h1>
         </div>
-        <div class = "todo-list2">
+        <div class="todo-list2">
             <h2>PLAYER 2</h2>
             <div class="row">
-                <button id = "submit2def"class = "bon" onclick="deftwo()">Defect</button>
-                <button id = "submit2cop"class = "bon" onclick="coptwo()">Cooperate</button>
-                <button id = "submit2risk"class = "bon" onclick="risktwo()">Risk</button>
+                <button id="submit2def" class="bon">Defect</button>
+                <button id="submit2cop" class="bon">Cooperate</button>
+                <button id="submit2risk" class="bon">Risk</button>
             </div>
-            <ul id = "list2-container">
-
-            </ul>
-            
-    </div></div>
-<a href="mathsmania2.html" target="_blank"><h1 style = "font-size: 25px;font-weight:bold;color:#26001B;">Home</h1></a><br>
-
+            <ul id="list2-container"></ul>
+            <h1 id = "final2"class = "finalresult">00</h1>
+        </div>
+    </div>
+    <br>
+    <button id = "finish" onclick = "gameEnd()"style = "margin-left:600px;font-size:50px;background:#872341;padding-left:20px;padding-right:20px;color:#f3b6ad;border-width:5px;border-color:#26001B">Finish</button>
+    <br>
+        <br><a href="mathsmania2.html" target="_blank"><h1 style = "text-align:center;margin-left:110px;font-size: 25px;font-weight:bold;color:#22092c">Home</h1></a><br>
 </body>
+
 <script>
-    let round = 0;
-    let round2 = 0;
-    const List1container = document.getElementById('list1-container');
-    const List2container = document.getElementById('list2-container');
-    function defone(){
-        round += 1;
-        let li = document.createElement('li');
-        li.innerHTML = round + ". Defect";
-        List1container.appendChild(li);
-        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
-    }
-    function copone(){
-        round += 1;
-        let li = document.createElement('li');
-        li.innerHTML = round + ". Cooperate";
-        List1container.appendChild(li);
-        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
-    }
-    function riskone(){
-        round += 1;
-        let li = document.createElement('li');
-        li.innerHTML = round + ". Risk";
-        List1container.appendChild(li);
-        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
-    }
-    function deftwo(){
-        round2 += 1;
-        let li2 = document.createElement('li');
-        li2.innerHTML = round2 + ". Defect";
-        List2container.appendChild(li2);
-        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
-    }
-    function coptwo(){
-        round2 += 1;
-        let li2 = document.createElement('li');
-        li2.innerHTML = round2 + ". Cooperate";
-        List2container.appendChild(li2);
-        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
-    }
-    function risktwo(){
-        round2 += 1;
-        let li2 = document.createElement('li');
-        li2.innerHTML = round2 + ". Risk";
-        List2container.appendChild(li2);
-        document.getElementById('roundcount').innerHTML = "TURNS: " + round;
+    const roundCount = document.getElementById('roundcount');
+    const playerMoveList = [];
+    let playerTurn = 1;
+    let round = 1;
+    let player1TotalPoints = 0;
+    let player2TotalPoints = 0;
+    let player1Action = null;
+    let player2Action = null;
+
+    // bind this function to the button you want that ends the game early
+    function gameEnd() {
+        playerTurn = 3;
+        // this is where you show the html for the final scores which are the player1TotalPoints and player2TotalPoints
+        console.log(player1TotalPoints, player2TotalPoints)
+        document.getElementById('final1').innerHTML = player1TotalPoints;
+        document.getElementById('final2').innerHTML = player2TotalPoints;
+
     }
 
-    </script>
+    function calculatePoints() {
+        let player1Points = 0;
+        let player2Points = 0;
+
+        if (player1Action === "Cooperate" && player1Action === player2Action) {
+            player1Points += 2;
+            player1TotalPoints += 2;
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (+2)`
+            player2Points += 2;
+            player2TotalPoints += 2;
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (+2)`
+        } else if (player1Action === "Defect" && player1Action === player2Action) {
+            player1Points -= 1;
+            player1TotalPoints -= 1;
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (-1)`
+            player2Points -= 1;
+            player2TotalPoints -= 1;
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (-1)`
+        } else if (player1Action === "Risk" && player1Action === player2Action) {
+            if (player1TotalPoints > player2TotalPoints) {
+                // make a thing pop up like player 1 won
+                console.log("Player 1 won!");
+            } else if (player1TotalPoints < playerTotal2Points) {
+                // make a thing pop up like player 2 won
+                console.log("Player 2 won!");
+            } else {
+                // unlikely but is possible still for it to draw
+                console.log("It's a draw!")
+            }
+            // GAME OVER
+            gameEnd()
+        } else if (player1Action === "Defect" && player2Action === "Cooperate") {
+            player1Points += 5;
+            player1TotalPoints += 5;
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (+5)`
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (+0)`
+        } else if (player2Action === "Defect" && player1Action === "Cooperate") {
+            player2Points += 5;
+            player2TotalPoints += 5;
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (+5)`
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (+0)`
+        } else if (player1Action === "Risk" && player2Action === "Defect") {
+            player1Points += 5;
+            player1TotalPoints += 5;
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (+5)`
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (+0)`
+        } else if (player2Action === "Risk" && player1Action === "Defect") {
+            player2Points += 5;
+            player2TotalPoints += 5;
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (+5)`
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (+0)`
+        } else if (player1Action === "Risk" && player2Action === "Cooperate") {
+            player1Points -= 5;
+            player1TotalPoints -= 5;
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (-5)`
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (+0)`
+        } else if (player2Action === "Risk" && player1Action === "Cooperate") {
+            player2Points -= 5;
+            player2TotalPoints -= 5;
+            playerMoveList[1].innerHTML = `${playerMoveList[1].innerHTML} (-5)`
+            playerMoveList[0].innerHTML = `${playerMoveList[0].innerHTML} (+0)`
+        }
+
+        playerMoveList.splice(0, 2)
+        // update both player1Points and player2Points for the html here
+        console.log(player1Points, player2Points);
+    }
+
+    function playerAction(action, playerButton) {
+        if (playerButton === playerTurn) {
+            const listContainer = document.getElementById(`list${playerTurn}-container`);
+            const move = document.createElement('li');
+            roundCount.innerHTML = `TURNS: ${round}`;
+            move.innerHTML = `${round}: ${action}`;
+            listContainer.appendChild(move);
+            playerMoveList.push(move)
+
+            if (playerTurn === 1) {
+                playerTurn = 2;
+                player1Action = action;
+            } else {
+                playerTurn = 1;
+                player2Action = action;
+                calculatePoints();
+                round += 1;
+            }
+        }
+    }
+    
+    function addClickListener(elementId, action, playerButton) {
+        document.getElementById(elementId).addEventListener('click', function() {
+            playerAction(action, playerButton);
+        });
+    }
+
+    addClickListener('submit1def', "Defect", 1);
+    addClickListener('submit1cop', "Cooperate", 1);
+    addClickListener('submit1risk', "Risk", 1);
+    addClickListener('submit2def', "Defect", 2);
+    addClickListener('submit2cop', "Cooperate", 2);
+    addClickListener('submit2risk', "Risk", 2);
+</script>
 <style>
+    .finalresult{
+        font-size: 60px;
+        margin-top:80px;
+        font-weight:bold;
+        color:aliceblue;
+    }
     .bon:hover{
         background-color: #be3144;
-
     }
     ul li{
         list-style: none;
@@ -116,7 +196,6 @@
         cursor: pointer;
         border-radius: 40px;
         font-weight: bold;
-
     }
     .row{
         display: flex;
@@ -144,7 +223,9 @@
         width: 100%;
         max-width: 540px;
         background: #f05941;
-        margin: 100px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-left: 200px;
         padding: 40px 30px 70px;
         border-radius: 10px;
         border: solid;
@@ -169,7 +250,9 @@
     .container{
         width: 100%;
         min-height: 100vh;
-        background: #f3b6ad;    
+        background: #f3b6ad;
+        padding: 10px;
+    
     }
 </style>
 </html>
